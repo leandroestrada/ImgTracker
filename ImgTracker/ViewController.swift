@@ -24,7 +24,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         
         // Create a new scene
-        let scene = SCNScene(named: "/Users/le/Desktop/AR/ImgTracker/ImgTracker/art.scnassets/SceneKit Scene.scn")!
+        let scene = SCNScene(named: "art.scnassets/SceneKitScene.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
@@ -57,9 +57,23 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
 // MARK: - ARSCNViewDelegate
-    //Always add this func when anchor is addedgit s
+    //Always add this func when an anchor is added
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        if let imageAnchor
+        let node = SCNNode()
+        
+        if let imageAnchor = anchor as? ARImageAnchor{
+            let plane = SCNPlane(width:
+                imageAnchor.referenceImage.physicalSize.width,
+                height:imageAnchor.referenceImage.physicalSize.height)
+            
+            plane.firstMaterial?.diffuse.contents = UIColor(white: 1, alpha: 0.8)
+            
+            let planeNode = SCNNode(geometry: plane)
+            planeNode.eulerAngles.x = -.pi / 2
+            
+            node.addChildNode(planeNode)
+        }
+        return node
     }
 
 }
