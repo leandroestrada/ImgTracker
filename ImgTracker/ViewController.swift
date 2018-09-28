@@ -57,7 +57,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
 // MARK: - ARSCNViewDelegate
-    //Always add this func when anchor is added
+    //Always add this func when anchor is addedgit s
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         if let imageAnchor
     }
